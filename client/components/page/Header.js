@@ -70,8 +70,12 @@ function styles(css, { color, dimensions, boxShadow }) {
 				display: none;
 			}
 		`,
-		searchInput: css`
+		search: css`
 			flex-shrink: 2;
+			max-width: 60%;
+			@media (min-width: 500px) {
+				max-width: unset;
+			}
 		`,
 		pb: css`
 			color: #fff;

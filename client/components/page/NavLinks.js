@@ -5,10 +5,6 @@ import { ROUTES } from '../../consts/routes';
 
 const links = [
 	{
-		name: 'Videos',
-		path: ROUTES.search
-	},
-	{
 		name: 'Upload',
 		path: ROUTES.uploadVideo
 	}
@@ -18,20 +14,32 @@ export default function NavLinks() {
 	const classes = useStyles(styles);
 
 	return (
-		<div css={classes.root}>
+		<nav css={classes.root}>
 			{links.map(({ name, path }, i) => (
-				<Link key={i} to={path}>
+				<Link key={i} to={path} css={classes.link}>
 					{name}
 				</Link>
 			))}
-		</div>
+		</nav>
 	);
 }
 
-function styles(css) {
+function styles(css, { color }) {
 	return {
 		root: css`
 			display: flex;
+			padding: 0px 8px;
+		`,
+		link: css`
+			color: ${color.white};
+			@media (min-width: 500px) {
+				opacity: 0.5;
+				transition: opacity 0.3s linear;
+				&:hover,
+				&:focus {
+					opacity: 1;
+				}
+			} ;
 		`
 	};
 }

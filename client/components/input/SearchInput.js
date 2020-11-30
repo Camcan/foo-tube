@@ -6,13 +6,15 @@ import { KEYS } from '../../consts/keys';
 SearchInput.propTypes = {
 	onSubmit: func.isRequired,
 	onChange: func.isRequired,
-	value: string
+	value: string,
+	className: string
 };
 
 export default function SearchInput({
 	onSubmit,
 	onChange: onChangeProp,
-	value
+	value,
+	className
 }) {
 	const classes = useStyles(styles);
 
@@ -27,6 +29,7 @@ export default function SearchInput({
 	return (
 		<input
 			css={classes.input}
+			className={className}
 			type="search"
 			placeholder="Search images"
 			value={value}

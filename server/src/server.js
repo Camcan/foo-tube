@@ -14,6 +14,8 @@ app.disable('etag');
 
 app.use(express.static(path.join(__dirname, '../../dist')));
 
+app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
+
 app.post('/api/videos/upload', uploadVideo);
 
 app.get('/api/videos', searchVideos);

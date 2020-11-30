@@ -1,5 +1,6 @@
 export const ROUTES = {
 	home: '/',
 	search: '/search',
-	uploadVideo: '/videos/upload'
+	uploadVideo: '/videos/upload',
+	video: '/videos/:videoId'
 };
