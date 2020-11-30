@@ -16,6 +16,10 @@ app.use(express.static(path.join(__dirname, '../../dist')));
 
 app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
 
+app.get(['/', '/search', 'upload'], (req, res) => {
+	res.sendFile(path.join(__dirname, '/../../dist/index.html'));
+});
+
 app.post('/api/videos/upload', uploadVideo);
 
 app.get('/api/videos', searchVideos);
