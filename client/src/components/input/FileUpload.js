@@ -2,15 +2,23 @@ import React from 'react';
 import { func, string, bool } from 'prop-types';
 
 FileUpload.propTypes = {
-	onSelectFile: func,
+	onFileSelect: func,
 	name: string,
-	required: bool
+	required: bool,
+	disabled: bool
 };
 
-export default function FileUpload({ onFileSelect, name, required }) {
+export default function FileUpload({ onFileSelect, name, required, disabled }) {
 	const handleFileInput = ({ target: { files } }) => {
-		onSelectFile(files[0]);
+		if (onSelectFile) onFileSelect(files[0]);
 	};
 
-	return <input type="file" onChange={handleFileInput} name={name} />;
+	return (
+		<input
+			type="file"
+			onChange={handleFileInput}
+			name={name}
+			disabled={disabled}
+		/>
+	);
 }
