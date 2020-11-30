@@ -18,7 +18,7 @@ export function SearchProvider({ path, children }) {
 	const [hasFetched, setHasFetched] = useState(false);
 	const [{ data, loading }, performSearch] = useSearch(path);
 
-	const onSearch = () => {
+	const onSearch = (params) => {
 		if (params) {
 			setParameters(params);
 		}

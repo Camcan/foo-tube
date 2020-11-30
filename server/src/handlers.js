@@ -47,8 +47,13 @@ function searchVideos({ query }, res) {
 	if (!Object.keys(query).length) {
 		results = videoStore.getAllVideos();
 	} else {
-		const { count } = query;
-		results = videoStore.getAllVideos().slice(0, count);
+		const { count, query: queryString } = query;
+		let filter = () => true;
+		if (queryString) {
+			filter = ({ title }) =>
+				title.toLowerCase().includes(queryString.toLowerCase());
+		}
+		results = videoStore.searchVideos(filter).slice(0, count);
 	}
 	res.json({ results });
 }
