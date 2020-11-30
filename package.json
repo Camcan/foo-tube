@@ -6,7 +6,8 @@
 	"scripts": {
 		"build": "cp -r client/src/static/* dist/ && webpack",
 		"dev": "yarn build --watch --mode development & nodemon server/src/server.js",
-		"start": "node server/src/server.js"
+		"start": "node server/src/server.js",
+		"test": "yarn jest"
 	},
 	"dependencies": {
 		"dotenv": "^8.2.0",
