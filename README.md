@@ -8,11 +8,11 @@ Backend:
 - Multer for processing the image upload
 - ffmpeg for grabbing frames from video post-upload
 - Hacky local file store class does the necessary things (tested...)
--
+
 Frontend:
 
 - React
-- Packaged with Webpack
+- Includes hover preview of videos
 - Tests for simplest part I could find (the interpolatePath utility)
 
 
