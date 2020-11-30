@@ -1,14 +1,14 @@
 const fs = require('fs');
-const { dbPath } = require('../config.js');
-
-let existingDb = [];
-const exists = fs.existsSync(dbPath);
-if (exists) {
-	existingDb = JSON.parse(fs.readFileSync(dbPath));
-}
 
 class VideoStore {
-	constructor() {
+	constructor(dbPath) {
+		let existingDb = [];
+		const exists = fs.existsSync(dbPath);
+		if (exists) {
+			const content = fs.readFileSync(dbPath, 'utf8');
+			existingDb = JSON.parse(content);
+		}
+		this.dbPath = dbPath;
 		this.videos = existingDb;
 	}
 
@@ -26,7 +26,7 @@ class VideoStore {
 
 		this.videos.push(record);
 
-		fs.writeFile(dbPath, JSON.stringify(this.videos), (err) => {
+		fs.writeFileSync(this.dbPath, JSON.stringify(this.videos), (err) => {
 			if (!err) {
 				console.log(`New record added with id ${id}`);
 			} else {
@@ -47,5 +47,5 @@ class VideoStore {
 }
 
 module.exports = {
-	videoStore: new VideoStore()
+	VideoStore
 };
