@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import UploadVideoForm from './UploadVideoForm';
 

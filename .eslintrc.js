@@ -2,7 +2,7 @@ module.exports = {
 	parser: 'babel-eslint',
 	parserOptions: {
 		ecmaVersion: 2017,
-		sourceType: 'module',
+		sourceType: 'module'
 	},
 	env: {
 		node: true,
@@ -14,7 +14,8 @@ module.exports = {
 	extends: [
 		'eslint:recommended',
 		'prettier',
-		'plugin:react/recommended'	
+		'plugin:react/recommended',
+		'plugin:jest/recommended'
 	],
 	rules: {
 		'no-console': ['error', { allow: ['warn', 'error'] }],

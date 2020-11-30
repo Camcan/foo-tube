@@ -6,13 +6,13 @@ export default function useSearch(path) {
 
 	const performSearch = (urlParams) => {
 		setLoading(true);
-		console.log('fetching with params', urlParams);
 		fetch(`${path}?${urlParams}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setData(data);
 				setLoading(false);
-			});
+			})
+			.catch(() => setLoading(false));
 	};
 
 	return [{ loading, data }, performSearch];

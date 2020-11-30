@@ -10,7 +10,7 @@ FileUpload.propTypes = {
 
 export default function FileUpload({ onFileSelect, name, required, disabled }) {
 	const handleFileInput = ({ target: { files } }) => {
-		if (onSelectFile) onFileSelect(files[0]);
+		if (onFileSelect) onFileSelect(files[0]);
 	};
 
 	return (
@@ -18,6 +18,7 @@ export default function FileUpload({ onFileSelect, name, required, disabled }) {
 			type="file"
 			onChange={handleFileInput}
 			name={name}
+			required={required}
 			disabled={disabled}
 		/>
 	);

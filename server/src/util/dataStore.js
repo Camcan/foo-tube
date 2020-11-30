@@ -28,6 +28,7 @@ class VideoStore {
 
 		fs.writeFileSync(this.dbPath, JSON.stringify(this.videos), (err) => {
 			if (!err) {
+				// eslint-disable-next-line no-console
 				console.log(`New record added with id ${id}`);
 			} else {
 				console.error('Error:', err);

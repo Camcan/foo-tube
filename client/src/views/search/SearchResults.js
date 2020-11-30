@@ -6,9 +6,7 @@ import ItemCard from './ItemCard';
 export default function SearchResults() {
 	const classes = useStyles(styles);
 	const {
-		data: { results = [] },
-		parameters,
-		onSearch
+		data: { results = [] }
 	} = useSearchContext();
 
 	return (
@@ -21,14 +19,14 @@ export default function SearchResults() {
 						))}
 					</>
 				) : (
-					<p>We couldn't find any videos :(</p>
+					<p>{`We couldn't find any videos :(`}</p>
 				)}
 			</section>
 		</>
 	);
 }
 
-function styles(css, { color }) {
+function styles(css) {
 	return {
 		root: css`
 			height: 100%;

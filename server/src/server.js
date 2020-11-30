@@ -25,5 +25,6 @@ app.post('/api/videos/upload', uploadVideo);
 app.get('/api/videos', searchVideos);
 
 app.listen(port, () =>
+	// eslint-disable-next-line no-console
 	console.log(`The magic is happening on port ${port}...`)
 );

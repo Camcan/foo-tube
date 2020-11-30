@@ -16,12 +16,11 @@ export default function UploadVideoForm() {
 		const data = new FormData(formRef.current);
 		fetch(ENDPOINTS.uploadVideo, { method: 'POST', body: data })
 			.then((res) => res.json())
-			.then((data) => {
+			.then(() => {
 				setSuccess(true);
 				setLoading(false);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(() => {
 				setLoading(false);
 			});
 	};
@@ -52,7 +51,7 @@ export default function UploadVideoForm() {
 	);
 }
 
-function styles(css, { color, dimensions }) {
+function styles(css, { color }) {
 	return {
 		root: css`
 			padding: 16px;

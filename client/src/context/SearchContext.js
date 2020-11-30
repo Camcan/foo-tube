@@ -34,7 +34,6 @@ export function SearchProvider({ path, children }) {
 			for (const [key, value] of params.entries()) {
 				paramsObj[key] = value;
 			}
-			console.log('useEffect, performing search...', path);
 			setParameters(paramsObj);
 			performSearch(params);
 			setHasFetched(true);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import SearchResults from './SearchResults';
 import Loader from '../../components/loader/Loader';

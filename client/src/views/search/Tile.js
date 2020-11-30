@@ -50,6 +50,7 @@ export default function Tile({ frames, className }) {
 				frames.map((frame, i) => {
 					return (
 						<img
+							key={i}
 							src={frame}
 							css={[
 								classes.img,

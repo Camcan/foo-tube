@@ -19,11 +19,12 @@ const sampleItem = {
 
 const dbPath = 'test-db.json';
 
-const getLocalDbFile = () => fs.readFileSync(dbPath);
-
 afterAll(() => {
 	if (fs.existsSync(dbPath)) {
-		return fs.unlinkSync(dbPath, (err) => console.log(err));
+		return fs.unlinkSync(dbPath, (err) => {
+			// eslint-disable-next-line no-console
+			console.log(err);
+		});
 	}
 });
 
@@ -49,7 +50,6 @@ describe('videoStore', () => {
 	});
 	it('can performs search with provided filter', () => {
 		const store = new VideoStore(dbPath);
-		const allVideos = store.getAllVideos();
 
 		expect(
 			store.searchVideos(({ title }) => {

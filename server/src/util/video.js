@@ -5,7 +5,7 @@ const config = require('../config');
 const allowedFileExtensions = ['mov', 'avi', 'wmv', 'flv', '3gp', 'mp4', 'mpg'];
 
 const allowedFileExtensionsRegex = new RegExp(
-	`\.(${allowedFileExtensions.join('|')})$`
+	`.(${allowedFileExtensions.join('|')})$`
 );
 
 function videoFilter(req, file, cb) {
@@ -35,6 +35,7 @@ function extractFrames({ filename, id }, cb) {
 				);
 			},
 			(err) => {
+				// eslint-disable-next-line no-console
 				console.log('Error: ' + err);
 			}
 		);

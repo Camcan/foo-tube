@@ -1,5 +1,4 @@
 const multer = require('multer');
-const path = require('path');
 const { videoFilter, extractFrames } = require('./util/video');
 const { VideoStore } = require('./util/dataStore');
 const config = require('./config');
@@ -9,7 +8,7 @@ const videoStore = new VideoStore(config.dbPath);
 
 const diskStorage = multer.diskStorage({
 	destination: (req, file, cb) => cb(null, config.uploadsDir),
-	filename: (req, { fieldname, originalname }, cb) => {
+	filename: (req, { originalname }, cb) => {
 		cb(null, `${Date.now()}_${originalname}`);
 	}
 });
