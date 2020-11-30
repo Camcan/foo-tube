@@ -1,3 +1,7 @@
+const fs = require('fs');
+const ffmpeg = require('ffmpeg');
+const config = require('../config');
+
 const allowedFileExtensions = ['mov', 'avi', 'wmv', 'flv', '3gp', 'mp4', 'mpg'];
 
 const allowedFileExtensionsRegex = new RegExp(
@@ -14,6 +18,32 @@ function videoFilter(req, file, cb) {
 	cb(null, true);
 }
 
+function extractFrames({ filename, id }, cb) {
+	try {
+		const process = new ffmpeg(`${config.uploadsDir}/${filename}`);
+		process.then(
+			(video) => {
+				const framesPath = `${config.uploadsDir}/${id}`;
+				fs.mkdirSync(framesPath);
+				video.fnExtractFrameToJPG(
+					framesPath,
+					{
+						every_n_percentage: 10,
+						file_name: `${filename}_%t_%s`
+					},
+					cb
+				);
+			},
+			(err) => {
+				console.log('Error: ' + err);
+			}
+		);
+	} catch (e) {
+		cb(e);
+	}
+}
+
 module.exports = {
-	videoFilter
+	videoFilter,
+	extractFrames
 };

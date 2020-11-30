@@ -1,12 +1,14 @@
 const multer = require('multer');
 const path = require('path');
-const { videoFilter } = require('./util/video');
+const { videoFilter, extractFrames } = require('./util/video');
 const { videoStore } = require('./util/dataStore');
+const config = require('./config');
+const { v4: uuidv4 } = require('uuid');
 
 const diskStorage = multer.diskStorage({
-	destination: (req, file, cb) => cb(null, 'uploads/'),
+	destination: (req, file, cb) => cb(null, config.uploadsDir),
 	filename: (req, { fieldname, originalname }, cb) => {
-		cb(null, fieldname + '-' + Date.now() + path.extname(originalname));
+		cb(null, `${Date.now()}_${originalname}`);
 	}
 });
 
@@ -24,16 +26,34 @@ function uploadVideo(req, res) {
 		} else if (err) {
 			return res.send(err);
 		}
+		const id = uuidv4();
+		const { filename } = req.file;
 
-		const vidInfo = videoStore.addVideo({
-			filename: req.file.filename,
-			title: req.body.title
+		extractFrames({ filename, id }, (err, frames) => {
+			if (err) throw err;
+			const record = videoStore.addVideo({
+				title: req.body.title,
+				filename,
+				id,
+				frames
+			});
+			res.send(record);
 		});
-
-		res.send(vidInfo);
 	});
 }
 
+function searchVideos({ query }, res) {
+	let results;
+	if (!Object.keys(query).length) {
+		results = videoStore.getAllVideos();
+	} else {
+		const { count } = query;
+		results = videoStore.getAllVideos().slice(0, count);
+	}
+	res.json({ results });
+}
+
 module.exports = {
-	uploadVideo
+	uploadVideo,
+	searchVideos
 };

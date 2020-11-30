@@ -11,6 +11,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "ffmpeg": "^0.0.4",
     "multer": "^1.4.2",
     "prop-types": "^15.7.2",
     "uuid": "^8.3.1"
@@ -32,7 +33,7 @@
     "react-browser-router": "^2.1.2",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "webpack": "^5.8.0",
+    "webpack": "^5.9.0",
     "webpack-cli": "^4.2.0"
   }
 }
