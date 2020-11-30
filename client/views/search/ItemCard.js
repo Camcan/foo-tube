@@ -4,6 +4,7 @@ import useStyles from '../../hooks/useStyles';
 import { interpolatePath } from '../../util/string';
 import { ROUTES } from '../../consts/routes';
 import { Link } from 'react-browser-router';
+import Tile from './Tile';
 
 ItemCard.propTypes = {
 	item: shape({
@@ -17,15 +18,10 @@ ItemCard.propTypes = {
 export default function ItemCard({ item: { id, title, added, frames } }) {
 	const classes = useStyles(styles);
 
-	// Middle frame as initial tile image
-	const tileUrl = frames && frames[Math.floor(frames.length / 2)];
-
 	return (
 		<Link to={interpolatePath(ROUTES.video, { videoId: id })}>
 			<article css={classes.root}>
-				<div css={classes.tile}>
-					<img css={classes.tileImg} src={tileUrl} />
-				</div>
+				<Tile css={classes.tile} frames={frames} />
 				<div css={classes.info}>
 					<p>{title}</p>
 					<p>{added}</p>
@@ -51,12 +47,6 @@ function styles(css, { color }) {
 			width: 130px;
 			border-radius: 4px;
 			background-color: ${color.lightGrey};
-			overflow: hidden;
-			display: flex;
-			justify-content: center;
-		`,
-		tileImg: css`
-			height: 100%;
 		`,
 		info: css`
 			color: white;
